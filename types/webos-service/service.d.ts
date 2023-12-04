@@ -4,9 +4,9 @@ import { Method } from "./method";
 import { Subscription } from "./subscription";
 
 export interface ServiceOptions {
-    // Idle time in seconds before exiting.
+    /** Idle time in seconds before exiting. */
     readonly idleTimer?: number | undefined;
-    // Prevents registering 'info' & 'quit' methods.
+    /** Prevents registering 'info' & 'quit' methods. */
     readonly noBuiltinMethods?: boolean | undefined;
 }
 
@@ -21,25 +21,34 @@ export class Service {
 
     readonly methods: { [category: string]: { [methodName: string]: Method } };
 
-    readonly noBuiltinMethods: boolean;
+    /** Do not register 'info'/'quit'. Set to true when passed in options. */
+    readonly noBuiltinMethods: boolean | undefined;
 
     readonly subscriptions: { [id: string]: Message };
 
-    cleanupUnifiedDone: boolean;
+    /** Set by cleanupUnified(). */
+    readonly cleanupUnifiedDone: boolean | undefined;
 
-    handle: any;
+    /** Luna bus handle when ACG is used. */
+    readonly handle: object | undefined;
 
-    idleTimer: number;
+    /** Timeout for ActivityManager. Defaults to 5. */
+    readonly idleTimer: number;
 
-    hasPublicMethods: boolean;
+    /** Whether 'quit' is allowed on public bus. Set to true when a public method is registered. */
+    readonly hasPublicMethods: boolean;
 
-    privateHandle: any;
+    /** Handle for private Luna bus if ACG not in use. */
+    readonly privateHandle: object | undefined;
 
-    publicHandle: any;
+    /** Handle for public Luna bus if ACG not in use. */
+    readonly publicHandle: object | undefined;
 
-    sendingHandle: any;
+    /** Handle used for calls/subscriptions. Th  e private handle is used if privileged. */
+    readonly sendingHandle: object;
 
-    useACG: boolean;
+    /** Whether new ACG security model is used. */
+    readonly useACG: boolean;
 
     private readonly __serviceMainUnified: any;
 

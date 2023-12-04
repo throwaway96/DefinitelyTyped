@@ -5,13 +5,13 @@ import { EventEmitter } from "events";
 export class Subscription extends EventEmitter {
     readonly args: Record<string, any>;
 
-    readonly handle: any;
+    readonly handle: object;
 
-    readonly request: any;
+    readonly request: object;
 
     readonly uri: string;
 
-    constructor(handle: any, uri: string, args: Record<string, any>);
+    constructor(handle: object, uri: string, args: Record<string, any>);
 
     cancel(): void;
 }

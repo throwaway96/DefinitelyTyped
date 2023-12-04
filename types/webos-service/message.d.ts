@@ -6,11 +6,11 @@ export class Message {
 
     readonly category: string;
 
-    readonly handle: any;
+    readonly handle: object;
 
     readonly isSubscription: boolean;
 
-    readonly ls2Message: any;
+    readonly ls2Message: object;
 
     readonly method: string;
 
@@ -24,7 +24,7 @@ export class Message {
 
     readonly uniqueToken: string;
 
-    constructor(message: any, handle: any, activityManager: ActivityManager, service: Service);
+    constructor(message: object, handle: object, activityManager: ActivityManager, service: Service);
 
     cancel(response: Record<string, any>): void;
 
