@@ -11,7 +11,10 @@ export class Subscription extends EventEmitter {
 
     readonly uri: string;
 
-    constructor(handle: object, uri: string, args: Record<string, any>);
+    /**
+     * @param sessionId Only present on webOS OSE.
+     */
+    constructor(handle: object, uri: string, args: Record<string, any>, sessionId?: string);
 
     cancel(): void;
 }

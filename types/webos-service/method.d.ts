@@ -8,7 +8,13 @@ export class Method extends EventEmitter {
 
     readonly name: string;
 
-    constructor(methodName: string, description: Record<string, any>);
+    /** Present on webOS TV 6 but not TV 4.0 or OSE. */
+    opts: Record<string, any>;
+
+    /**
+     * @param opts Present on webOS TV 6 but not TV 4.0 or OSE.
+     */
+    constructor(methodName: string, description: Record<string, any>, opts?: Record<string, any>);
 
     on(event: "request" | "cancel", listener: (message: Message) => void): this;
 
